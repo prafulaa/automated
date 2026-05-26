@@ -29,7 +29,7 @@ function makeInput(overrides: Partial<ReportInput> = {}): ReportInput {
 describe('renderReport', () => {
   it('includes the risk level', () => {
     const report = renderReport(makeInput({ riskLevel: 'HIGH' }));
-    expect(report).toContain('HIGH');
+    expect(report).toContain('High');
   });
 
   it('includes the reviewer tip', () => {
@@ -53,7 +53,7 @@ describe('renderReport', () => {
       totalImpacted: 1,
     });
     const report = renderReport(makeInput({ result }));
-    expect(report).toContain('Frontend Components');
+    expect(report).toContain('Frontend components:');
     expect(report).toContain('src/App.tsx');
   });
 });
