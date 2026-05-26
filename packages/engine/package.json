@@ -20,7 +20,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "dependency-cruiser": "^16.0.0"
+    "dependency-cruiser": "^16.0.0",
+    "minimatch": "^10.2.5"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -118,6 +118,9 @@ importers:
       dependency-cruiser:
         specifier: ^16.0.0
         version: 16.10.4
+      minimatch:
+        specifier: ^10.2.5
+        version: 10.2.5
     devDependencies:
       '@types/node':
         specifier: ^22.0.0
