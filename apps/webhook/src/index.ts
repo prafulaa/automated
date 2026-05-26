@@ -6,5 +6,5 @@
 //   3. Background worker (pg-boss) — process analysis jobs
 
 export { createApp } from './app.js';
-export { createWorker } from './worker.js';
+export { processJob, backoff } from './worker.js';
 export type { JobPayload, AnalysisJob } from './types.js';
