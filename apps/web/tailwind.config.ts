@@ -5,8 +5,8 @@ export default {
     extend: {
       colors: {
         brand: {
-          DEFAULT: '#2C5F4A',
-          hover: '#234c3b',
+          DEFAULT: 'var(--color-accent)',
+          hover: 'oklch(42% 0.07 155)', /* high-fidelity custom hover */
           50: '#f0fdf6',
           100: '#dcfce7',
           500: '#22c55e',
@@ -15,17 +15,17 @@ export default {
           900: '#14532d',
         },
         surface: {
-          bg: '#0a0a0b',
-          DEFAULT: '#141416',
-          overlay: '#1c1c1f',
+          bg: 'var(--color-bg)',
+          DEFAULT: 'var(--color-surface)',
+          overlay: 'var(--color-overlay)',
         },
         border: {
-          DEFAULT: '#27272a',
+          DEFAULT: 'var(--color-border)',
         },
         risk: {
-          low: '#059669',
-          medium: '#d97706',
-          high: '#dc2626',
+          low: 'oklch(60% 0.15 150)',
+          medium: 'var(--color-warning)',
+          high: 'var(--color-danger)',
         },
       },
       fontFamily: {

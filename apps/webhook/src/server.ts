@@ -3,14 +3,14 @@
 import { createApp } from './app.js';
 import { registerWebhook } from './webhook.js';
 import { initApp } from './github.js';
-import type { AnthropicConfig } from './anthropic.js';
+import type { AiConfig } from './ai.js';
 
 export interface ServerConfig {
   port: number;
   githubAppId: string;
   githubPrivateKey: string;
   githubWebhookSecret: string;
-  anthropic: AnthropicConfig;
+  ai: AiConfig;
   tmpDirBase: string;
 }
 
@@ -28,7 +28,7 @@ export async function startServer(config: ServerConfig): Promise<void> {
   // Register webhook handler
   await registerWebhook(app, {
     webhookSecret: config.githubWebhookSecret,
-    worker: { anthropic: config.anthropic },
+    worker: { ai: config.ai },
     tmpDirBase: config.tmpDirBase,
   });
 
@@ -46,8 +46,10 @@ if (process.env['GITHUB_APP_ID']) {
     githubAppId: process.env['GITHUB_APP_ID'] || '',
     githubPrivateKey: process.env['GITHUB_APP_PRIVATE_KEY'] || '',
     githubWebhookSecret: process.env['GITHUB_WEBHOOK_SECRET'] || '',
-    anthropic: {
-      apiKey: process.env['ANTHROPIC_API_KEY'] || '',
+    ai: {
+      provider: (process.env['AI_PROVIDER'] || undefined) as any,
+      apiKey: process.env['AI_API_KEY'] || process.env['GEMINI_API_KEY'] || process.env['DEEPSEEK_API_KEY'] || process.env['ANTHROPIC_API_KEY'] || '',
+      model: process.env['AI_MODEL'] || undefined,
     },
     tmpDirBase: process.env['TMP_DIR'] || '/tmp/blastradius',
   }).catch((err) => {

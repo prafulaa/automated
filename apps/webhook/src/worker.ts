@@ -9,12 +9,12 @@ import {
   type RiskLevel,
 } from '@blastradius/engine';
 import { getInstallationOctokit, getPullRequestFiles, upsertComment } from './github.js';
-import { generateReviewerTip, type AnthropicConfig } from './anthropic.js';
+import { generateReviewerTip, type AiConfig } from './ai.js';
 import { renderReport } from './report.js';
 import type { JobPayload } from './types.js';
 
 export interface WorkerConfig {
-  anthropic: AnthropicConfig;
+  ai: AiConfig;
 }
 
 /**
@@ -77,8 +77,8 @@ export async function processJob(
     // 5. Score risk
     const riskLevel: RiskLevel = scoreRisk(result);
 
-    // 6. Generate reviewer tip (with Anthropic or template fallback)
-    const reviewerTip = await generateReviewerTip(result, riskLevel, config.anthropic);
+    // 6. Generate reviewer tip (with AI or template fallback)
+    const reviewerTip = await generateReviewerTip(result, riskLevel, config.ai);
 
     // 7. Render and post/update comment
     const totalMs = performance.now() - t0;
